@@ -1,6 +1,7 @@
 # Angular 19 Example Server Side Rendering with Nix
 
 > An Angular starter kit featuring [Angular 19.2.12](https://angular.io), [Angular CLI 19.2.13](https://cli.angular.io/) with Nix support
+> Uses Nx 21, Jest, Tailwind and Playwright
 
 ## Quickstart
 
