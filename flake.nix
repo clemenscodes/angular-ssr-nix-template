@@ -20,6 +20,7 @@
       default = pkgsForEach.${system}.callPackage ./shell.nix {};
     });
 
+    checks = packages;
     hydraJobs = packages;
   };
 }
