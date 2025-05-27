@@ -1,6 +1,7 @@
+/** @type {import('jest').Config} */
 export default {
   displayName: 'template',
-  preset: '../../jest.preset.js',
+  preset: '../../jest.preset.ts',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/apps/template',
   transform: {
@@ -18,4 +19,4 @@ export default {
     'jest-preset-angular/build/serializers/ng-snapshot',
     'jest-preset-angular/build/serializers/html-comment',
   ],
-};
+}

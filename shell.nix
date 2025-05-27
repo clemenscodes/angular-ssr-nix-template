@@ -21,7 +21,7 @@ in
       export PLAYWRIGHT_BROWSERS_PATH=${playwright-driver.browsers}
       export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=true
       export PLAYWRIGHT_LAUNCH_OPTIONS_EXECUTABLE_PATH=${playwright-driver.browsers}/chromium-$playwright_chromium_revision/chrome-linux/chrome
-      export PATH="./node_modules/.bin:$PATH"
+      export PATH="$PWD/node_modules/.bin:$PATH"
       echo "Angular devShell loaded..."
     '';
   })

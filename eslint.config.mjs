@@ -1,5 +1,6 @@
-import nx from '@nx/eslint-plugin';
+import nx from '@nx/eslint-plugin'
 
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
@@ -39,4 +40,4 @@ export default [
     // Override or add rules here
     rules: {},
   },
-];
+]

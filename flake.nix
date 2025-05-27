@@ -20,10 +20,17 @@
     gitignore,
     ...
   }: let
-    systems = ["x86_64-linux" "aarch64-linux"];
+    systems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
     forEachSystem = nixpkgs.lib.genAttrs systems;
     pkgsForEach = nixpkgs.legacyPackages;
   in rec {
+    checks = packages;
+
+    hydraJobs = packages;
+
     packages = forEachSystem (system: {
       default = pkgsForEach.${system}.callPackage ./default.nix {inherit gitignore;};
     });
@@ -32,7 +39,6 @@
       default = pkgsForEach.${system}.callPackage ./shell.nix {inherit gitignore;};
     });
 
-    checks = packages;
-    hydraJobs = packages;
+    formatter = forEachSystem (system: pkgsForEach.${system}.nixfmt-rfc-style);
   };
 }
