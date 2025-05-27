@@ -5,19 +5,31 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs";
     };
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
+    };
   };
 
-  outputs = {nixpkgs, ...}: let
+  outputs = {
+    nixpkgs,
+    gitignore,
+    ...
+  }: let
     systems = ["x86_64-linux" "aarch64-linux"];
     forEachSystem = nixpkgs.lib.genAttrs systems;
     pkgsForEach = nixpkgs.legacyPackages;
   in rec {
     packages = forEachSystem (system: {
-      default = pkgsForEach.${system}.callPackage ./default.nix {};
+      default = pkgsForEach.${system}.callPackage ./default.nix {inherit gitignore;};
     });
 
     devShells = forEachSystem (system: {
-      default = pkgsForEach.${system}.callPackage ./shell.nix {};
+      default = pkgsForEach.${system}.callPackage ./shell.nix {inherit gitignore;};
     });
 
     checks = packages;

@@ -3,8 +3,9 @@
   playwright-driver,
   nodejs_20,
   jq,
+  gitignore,
 }: let
-  mainPkg = callPackage ./default.nix {};
+  mainPkg = callPackage ./default.nix {inherit gitignore;};
 in
   mainPkg.overrideAttrs (oa: {
     nativeBuildInputs =

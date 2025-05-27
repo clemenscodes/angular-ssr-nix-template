@@ -1,12 +1,32 @@
 {
   "nodes": {
+    "gitignore": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1709087332,
+        "narHash": "sha256-HG2cCnktfHsKV0s4XW83gU3F57gaTljL9KNSuG6bnQs=",
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1748089567,
-        "narHash": "sha256-Dvq/xr99ZZbAO5Oljjrq/QOIBHzUjNLYeFg2gzpALzA=",
+        "lastModified": 1748319691,
+        "narHash": "sha256-LD/Ay+YGSuQMinAee0qfRdP3zSot7F7PTL5tNT7h1sk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "631b610af879088bed8a804a26f81fbdbe679658",
+        "rev": "5bd1c9f85ad8ea7aee256d785f9455ee106a0348",
         "type": "github"
       },
       "original": {
@@ -17,6 +37,7 @@
     },
     "root": {
       "inputs": {
+        "gitignore": "gitignore",
         "nixpkgs": "nixpkgs"
       }
     }

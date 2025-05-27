@@ -6,20 +6,47 @@
   lib,
   util-linux,
   jq,
+  gitignore,
 }: let
   pname = "angular-template";
   version = "0.1.0";
+  inherit (gitignore.lib) gitignoreSource;
 in
   buildNpmPackage rec {
     inherit pname version;
     inherit (importNpmLock) npmConfigHook;
 
-    src = ./.;
+    src = lib.cleanSourceWith {
+      filter = path: type: let
+        baseName = baseNameOf path;
+      in
+        !(
+          (type == "directory" && baseName == ".github")
+          || lib.hasSuffix ".md" baseName
+          || baseName == ".envrc"
+          || lib.hasSuffix ".nix" baseName
+          || baseName == "flake.lock"
+        );
+      src = gitignoreSource ./.;
+      name = "${pname}-source";
+    };
+
     npmDeps = importNpmLock {npmRoot = src;};
     nodejs = nodejs_20;
 
-    buildPhase = ''
-      ${util-linux}/bin/script -c "node_modules/.bin/nx build --skipNxCache --skipRemoteCache --skipSync --outputStyle=static" /dev/null
+    checkPhase = ''
+      runHook preCheck
+
+      echo "Configuring Nx"
+      export PATH="$PWD/node_modules/.bin:$PATH"
+      export NX_CACHE_DIRECTORY=$NIX_BUILD_TOP/nx-cache
+      export NX_PROJECT_GRAPH_CACHE_DIRECTORY=$NIX_BUILD_TOP/nx-cache
+
+      ${util-linux}/bin/script -c "nx run-many -t lint --all --outputStyle=static" /dev/null
+      ${util-linux}/bin/script -c "nx run-many -t test --all --outputStyle=static" /dev/null
+      ${util-linux}/bin/script -c "nx run-many -t build --all --outputStyle=static" /dev/null
+
+      runHook postCheck
     '';
 
     installPhase = ''
