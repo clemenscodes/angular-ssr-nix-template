@@ -1,9 +1,8 @@
-/** @type {import('jest').Config} */
 export default {
-  displayName: 'template',
-  preset: '../../jest.preset.ts',
+  displayName: 'styles',
+  preset: '../../jest.preset.cjs',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/template',
+  coverageDirectory: '../../coverage/libs/styles',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

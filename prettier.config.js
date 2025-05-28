@@ -1,5 +1,5 @@
-import sortImport from '@ianvs/prettier-plugin-sort-imports'
-import * as prettierTailwind from 'prettier-plugin-tailwindcss'
+import sortImport from '@ianvs/prettier-plugin-sort-imports';
+import * as prettierTailwind from 'prettier-plugin-tailwindcss';
 
 /** @type {import('prettier').Config} */
 export default {
@@ -28,9 +28,9 @@ export default {
   ],
   importOrderTypeScriptVersion: '5.0.0',
   singleQuote: true,
-  semi: false,
+  semi: true,
   tabWidth: 2,
   printWidth: 100,
   trailingComma: 'all',
   arrowParens: 'always',
-}
+};

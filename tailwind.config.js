@@ -1,7 +1,6 @@
-import type { Config } from 'tailwindcss/dist/lib.mjs'
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
-import theme from 'tailwindcss/dist/default-theme'
-
+/** @type {import('tailwindcss').Config} */
 export default {
   content: [],
   plugins: [require('tailwindcss-animate')],
@@ -29,7 +28,7 @@ export default {
         'full-xl': '0px 0px 16px 8px rgba(0,0,0,0.2)',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', ...theme.fontFamily.sans],
+        sans: ['var(--font-sans)', ...fontFamily.sans],
         condensed: ['Roboto Condensed'],
         agustina: ['Agustina Regular'],
       },
@@ -49,4 +48,4 @@ export default {
       },
     },
   },
-} satisfies Config
+};

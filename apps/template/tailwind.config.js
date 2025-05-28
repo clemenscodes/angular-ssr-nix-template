@@ -1,12 +1,12 @@
-import { join } from 'path'
-import type { Config } from 'tailwindcss/dist/lib.mjs'
+import { join } from 'path';
 
-import baseConfig from '../../tailwind.config'
+const tailwindBaseConfig = require('../../tailwind.config.js');
 
+/** @type {import('tailwindcss').Config} */
 export default {
-  presets: [baseConfig],
+  presets: [tailwindBaseConfig],
   content: [
     join(__dirname, 'src/**/*!(*.stories|*.spec).{ts,tsx,html}'),
     join(__dirname, '../../libs/**/*!(*.stories|*.spec).{ts,tsx,html}'),
   ],
-} satisfies Config
+};
